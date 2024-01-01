@@ -1,5 +1,4 @@
 # Umbenennung der Datei zu test_addiere_zahlen.py
-import pytest
 
 def add_numbers(a, b):
     return a + b
@@ -28,5 +27,4 @@ def test_mixed_numbers():
     result = add_numbers(number1, number2)
     assert result == expected_result, f"Failure: {number1} + {number2} should be {expected_result} but the actual result shows {result}"
 
-if __name__ == "__main__":
-    pytest.main()
+
