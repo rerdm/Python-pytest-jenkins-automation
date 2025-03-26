@@ -1,0 +1,11 @@
+[ {
+  "uid" : "820489a5f6b3b595",
+  "name" : "test_negative_numbers",
+  "time" : {
+    "start" : 1704138428544,
+    "stop" : 1704138428544,
+    "duration" : 0
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
