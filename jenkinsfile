@@ -15,7 +15,7 @@ pipeline {
         stage('Build and Run Tests') {
             steps {
                 script {
-                    // Install required dependencies , have to be present in your repo.
+                    // This will install required dependencies , this file has to be present in your repo.
                     bat 'pip install -r requirements.txt' // Adjust the path to your requirements.txt file if needed
 
                     // Run Pytest with creating pytest html report and Allure report generation 
