@@ -47,7 +47,7 @@ You can view the execution results of the pipeline stages in the specific job:
 
 ![Jenkins Allure Report Example](img/Job_executed.PNG)
 
-Now you can build the program via the Jenkins Dashboard and see the output in the Jenkins console log.
+The `Console output` can also be viewed for more detailed information:
 <br>
 
 
