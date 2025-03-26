@@ -6,89 +6,51 @@ This project demonstrates a minimal testing pipeline using pytest for test execu
 - [Preconditions](#preconditions)
 - [GitHub](#github)
 - [Jenkins](#jenkins)
-  - [Create Jenkins Job](#create-jenkins-job)
-- [Pipeline Script Example](#pipeline-script-example)
+- [Create Jenkins Job](#create-jenkins-job)
 - [Run the Pipeline](#run-the-pipeline)
 
 ## Preconditions
 
-1. python is installed - test it with `python --version`
-2. [allure](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip) is installed - tets ist with `allure --version`
-3. pytest is installed  - test it with `pytest --version`
-4. [Jenkins](https://www.jenkins.io/doc/book/installing/windows/) is installed<br>
-4.1 Jenkins should run on (http://localhost:8080/) 
-5. install jenkins plugins on the server:
-5.1 Allure Jenkins Plugin
-5.2 HTML Publisher Plugin
-5.3 Pipeline Plugin
-5.4 Git Plugin
-5.5 Pipeline Utility Steps Plugin
+- python is installed - test it with `python --version`
+- [allure](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip) is installed - tets ist with `allure --version`
+- pytest is installed  - test it with `pytest --version`
+- [Jenkins](https://www.jenkins.io/doc/book/installing/windows/) is installed<br>
+- Jenkins should run on (http://localhost:8080/) 
+- install jenkins plugins on the server:
+- Allure Jenkins Plugin
+- HTML Publisher Plugin
+- Pipeline Plugin
+- Git Plugin
 
 ## GitHub
 
-1. Create a new public repository on GitHub (private repos need additional authorization in jenkins)
-2. Create a basic pytest test file (e.g. test_calculate.py) and add it to the repository
+- Create a GitHub-Repository with a basic pytest program. (private repos need additional authorization in jenkins)
+- Create a [Jenkinsfile](Jenkinsfile) in the repository.
 
 ## Create Jenkins Job
 
-1. Create a Jenkins job (Pipeline Job): http://localhost:8080/view/all/newJob <br>
-2. Create configuration `Pipeline Script from SCM`  (Jenkinsfile form Github will be usesd).<br>
-   
+- Create a Jenkins job (Pipeline Job): http://localhost:8080/view/all/newJob <br>
+- Create configuration `Pipeline Script from SCM`  (Jenkinsfile form Github will be usesd).<br>
 
-## GitHub
-1. Create a GitHub-Repository with a basic pytest program.
 
 ## Jenkins
-1. Create a Jenkins-Job (Pipeline Job)
-2. Add a Pipeline-Script :You can create a Pipeline-Script in Jenkins or you can choose Pipeline-Script from SCM ( in ths case a jenkins file need to be 
+- Create a Jenkins-Job
+- In this project the Pipeline script(Jenkinsfile) is added in the root dir of the project 
+- <b>Note</b> You have to set the exact path to your jenkinsfile from teh root dir ( your repo)
+- Alsoe the name of the Jenkinsfile should be the same as in the pipeline configuration!! <br>
+<br>
 
-Example of pipeline script
-
-```	
-pipeline {
-    agent any
-
-    environment {
-        ALLURE_HOME = tool 'allure-commandline' // Assuming you have configured Allure command-line tool as a Jenkins tool
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rerdm/Python-pytest-jenkins-automation.git']])
-            }
-        }
-
-        stage('Build and Run Tests') {
-            steps {
-                script {
-                    // Install required dependencies , have to be present in your repo.
-                    bat 'pip install -r requirements.txt' // Adjust the path to your requirements.txt file if needed
-
-                    // Run Pytest with creating pytest html report and Allure report generation 
-                    bat 'pytest tests/test_calculate.py --html=reports/reports.html --alluredir=target/allure-results'
-                }
-            }
-        }
-
-        stage('Generate Allure Report') {
-            steps {
-                script {
-                    // Generate Allure report 
-                    allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
-                    
-                }
-            }
-
-        }
-
-    }
-}
-```
+![Jenkins job pipeline configuration](img/Job_config.PNG)
+<br>
 
 ## Run the Pipeline
 
-1. Now you can build the program via Jenkins Dashboard. see the output in the console log from Jenkins.
+Now you can see in specific job the execution result from thw pipeline stages:
+
+![Jenkins Allure Report Example](img/Job_executed.PNG)<br>
+
+Now you can build the program via Jenkins Dashboard. see the output in the console log from Jenkins.<br>
+<br>
 
 
 ```
@@ -232,9 +194,16 @@ Artifact was added to the build.
 Finished: SUCCESS
 ```
 
+## Generated Allure Report
 
+- After the execution the report can be accessed via the allure button.<br>
+<br>
 
-## Run The Pipeline
+![Jenkins Allure Report Example](img/Job_executed.PNG)<br>
+<br>
 
-3. Now you can build the programm and see the output in the console log from Jenkins.<br>You will see the allure symbol next to the associated execution.
+- The allure report shows teh details form teh test execution <br>
+<br>
+
+![Jenkins Allure Report Example](img/Allure_dashboard.PNG)
 
