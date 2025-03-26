@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    environment {
+        ALLURE_HOME = tool 'allure-commandline' // Assuming you have configured Allure command-line tool as a Jenkins tool
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rerdm/Python-pytest-jenkins-automation.git']])
+            }
+        }
+
+        stage('Build and Run Tests') {
+            steps {
+                script {
+                    // Install required dependencies , have to be present in your repo.
+                    bat 'pip install -r requirements.txt' // Adjust the path to your requirements.txt file if needed
+
+                    // Run Pytest with creating pytest html report and Allure report generation 
+                    bat 'pytest tests/test_calculate.py --html=reports/reports.html --alluredir=target/allure-results'
+                }
+            }
+        }
+
+        stage('Generate Allure Report') {
+            steps {
+                script {
+                    // Generate Allure report 
+                    allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                    
+                }
+            }
+
+        }
+
+    }
+}
