@@ -207,3 +207,4 @@ Finished: SUCCESS
 
 ![Jenkins Allure Report Example](img/Allure_dashboard.PNG)
 
+
