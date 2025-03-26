@@ -1,4 +1,3 @@
-# Python-pytest-jenkins-automation
 
 # Python-pytest-jenkins-automation (Creating Allure Report)
 
