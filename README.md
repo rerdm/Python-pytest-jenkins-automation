@@ -1,6 +1,6 @@
-# Python-pytest-jenkins-automation (Creating Allure Report)
+# Python-pytest-jenkins-automation
 
-This project demonstrates a minimal testing pipeline using pytest for test execution, integrated with Jenkins for CI/CD, <br>and enhanced with Allure Reports for visually rich test result reporting.The Jenkinsfile (Pipeline script) will be used to define the stages of the pipeline (Uploaded in the root directory).
+This project demonstrates a minimal testing pipeline using pytest for test execution, integrated with Jenkins for CI/CD, and enhanced with Allure Reports for visually rich test result reporting.<br> The Jenkinsfile (Pipeline script) is used to define the stages of the pipeline (uploaded in the root directory of the repository).
 
 ## Table of Contents
 - [Preconditions](#preconditions)
@@ -11,45 +11,43 @@ This project demonstrates a minimal testing pipeline using pytest for test execu
 
 ## Preconditions
 
-- python is installed - test it with `python --version`
-- [allure](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip) is installed - tets ist with `allure --version`
-- pytest is installed  - test it with `pytest --version`
-- [Jenkins](https://www.jenkins.io/doc/book/installing/windows/) is installed<br>
-- Jenkins should run on (http://localhost:8080/) 
-- install jenkins plugins on the server:
-- Allure Jenkins Plugin
-- HTML Publisher Plugin
-- Pipeline Plugin
-- Git Plugin
+- Python is installed - verify it with `python --version`.
+- [Allure](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip) is installed - verify it with `allure --version`.
+- Pytest is installed - verify it with `pytest --version`.
+- [Jenkins](https://www.jenkins.io/doc/book/installing/windows/) is installed.
+- Jenkins should run on [http://localhost:8080/](http://localhost:8080/).
+- Install the following Jenkins plugins on the server:
+    - Allure Jenkins Plugin
+    - HTML Publisher Plugin
+    - Pipeline Plugin
+    - Git Plugin
 
 ## GitHub
 
-- Create a GitHub-Repository with a basic pytest program. (private repos need additional authorization in jenkins)
+- Create a GitHub repository with a basic pytest program. (Private repositories require additional authorization in Jenkins.)
 - Create a [Jenkinsfile](Jenkinsfile) in the repository.
 
 ## Create Jenkins Job
 
-- Create a Jenkins job (Pipeline Job): http://localhost:8080/view/all/newJob <br>
-- Create configuration `Pipeline Script from SCM`  (Jenkinsfile form Github will be usesd).<br>
-
+- Create a Jenkins job (Pipeline Job): [http://localhost:8080/view/all/newJob](http://localhost:8080/view/all/newJob).
+- Configure the job with `Pipeline Script from SCM` (the Jenkinsfile from GitHub will be used).
 
 ## Jenkins
-- Create a Jenkins-Job
-- In this project the Pipeline script(Jenkinsfile) is added in the root dir of the project 
-- <b>Note</b> You have to set the exact path to your jenkinsfile from teh root dir ( your repo)
-- Alsoe the name of the Jenkinsfile should be the same as in the pipeline configuration!! <br>
-<br>
+
+- Create a Jenkins job.
+- In this project, the Pipeline script (Jenkinsfile) is added to the root directory of the project.
+- **Note:** You must set the exact path to your Jenkinsfile from the root directory of your repository.
+- Ensure the name of the Jenkinsfile matches the name specified in the pipeline configuration.
 
 ![Jenkins job pipeline configuration](img/Job_config.PNG)
-<br>
 
 ## Run the Pipeline
 
-Now you can see in specific job the execution result from thw pipeline stages:
+You can view the execution results of the pipeline stages in the specific job:
 
-![Jenkins Allure Report Example](img/Job_executed.PNG)<br>
+![Jenkins Allure Report Example](img/Job_executed.PNG)
 
-Now you can build the program via Jenkins Dashboard. see the output in the console log from Jenkins.<br>
+Now you can build the program via the Jenkins Dashboard and see the output in the Jenkins console log.
 <br>
 
 
@@ -202,7 +200,7 @@ Finished: SUCCESS
 ![Jenkins Allure Report Example](img/Job_executed.PNG)<br>
 <br>
 
-- The allure report shows teh details form teh test execution <br>
+- The allure report shows the details from the test(s) execution <br>
 <br>
 
 ![Jenkins Allure Report Example](img/Allure_dashboard.PNG)
