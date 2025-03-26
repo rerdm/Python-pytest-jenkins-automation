@@ -16,6 +16,7 @@ This project demonstrates a minimal testing pipeline using pytest for test execu
 - Pytest is installed - verify it with `pytest --version`.
 - [Jenkins](https://www.jenkins.io/doc/book/installing/windows/) is installed.
 - Jenkins should run on [http://localhost:8080/](http://localhost:8080/).
+- [requirements.txt](requirements.txt) is created with the required packages.
 - Install the following Jenkins plugins on the server:
     - Allure Jenkins Plugin
     - HTML Publisher Plugin
